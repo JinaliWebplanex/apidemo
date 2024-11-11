@@ -4,10 +4,15 @@ import List from "./component/List";
 function App() {
    
     return (
+     <div>
         <div className="App">
          <Form/>
-        <List/>
+         </div>
+        <div className="App">
+            <List/>
         </div>
+        </div>
+      
     );
 }
 

@@ -3,14 +3,17 @@ import axios from "axios";
 
 export default function Form() {
     const [productName, setProductName] = useState("");
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState(null);
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
 
+
+    
     const handleSubmit = async (e) => {
         console.log(e);
         e.preventDefault();
 
+      
         // Log the values to ensure they are updating correctly
         console.log("Product Name:", productName);
         console.log("Image:", image);
@@ -51,24 +54,26 @@ export default function Form() {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `OauthNG.JWS.eyJraWQiOiJZSEJzdUpwSCIsImFsZyI6IkhTMjU2In0.eyJkYXRhIjoie1wiaW5zdGFuY2VcIjp7XCJpbnN0YW5jZUlkXCI6XCIwNGNmMDExNy0wYzBiLTQxYjYtOTM1NS03M2U2ZTRjNjQwMDVcIixcImFwcERlZklkXCI6XCIyOWM3OGFmNC03MGZhLTRiMWMtOWY0Zi1iMWMwMzFiY2E5ZDdcIixcInNpZ25EYXRlXCI6XCIyMDI0LTExLTExVDA1OjAwOjMxLjY0NVpcIixcInBlcm1pc3Npb25zXCI6XCJcIixcImRlbW9Nb2RlXCI6ZmFsc2UsXCJzaXRlT3duZXJJZFwiOlwiYmM0YzZlZWEtYzNmNi00ZjljLTkxOGItOGNiYzEzODRlMzI0XCIsXCJtZXRhU2l0ZUlkXCI6XCJhOTJjNGFkZC00MTI3LTQ1YTUtOTNjMi04ODhmYTNlMjcxYmRcIixcImV4cGlyYXRpb25EYXRlXCI6XCIyMDI0LTExLTExVDA5OjAwOjMxLjY0NVpcIixcInBzXCI6XCIyOWM3OGFmNC03MGZhLTRiMWMtOWY0Zi1iMWMwMzFiY2E5ZDc6XjEuMC4wXCJ9fSIsImlhdCI6MTczMTMwMTIzMSwiZXhwIjoxNzMxMzE1NjMxfQ.A-5qzr9yBxNa9Sk5K3tJq6HBSreN8b3AECHwXgmk7nc`, // Replace with actual access token
+                        "Authorization": `OauthNG.JWS.eyJraWQiOiJZSEJzdUpwSCIsImFsZyI6IkhTMjU2In0.eyJkYXRhIjoie1wiaW5zdGFuY2VcIjp7XCJpbnN0YW5jZUlkXCI6XCIwNGNmMDExNy0wYzBiLTQxYjYtOTM1NS03M2U2ZTRjNjQwMDVcIixcImFwcERlZklkXCI6XCIyOWM3OGFmNC03MGZhLTRiMWMtOWY0Zi1iMWMwMzFiY2E5ZDdcIixcInNpZ25EYXRlXCI6XCIyMDI0LTExLTExVDA5OjA5OjU5LjEzMFpcIixcInBlcm1pc3Npb25zXCI6XCJcIixcImRlbW9Nb2RlXCI6ZmFsc2UsXCJzaXRlT3duZXJJZFwiOlwiYmM0YzZlZWEtYzNmNi00ZjljLTkxOGItOGNiYzEzODRlMzI0XCIsXCJtZXRhU2l0ZUlkXCI6XCJhOTJjNGFkZC00MTI3LTQ1YTUtOTNjMi04ODhmYTNlMjcxYmRcIixcImV4cGlyYXRpb25EYXRlXCI6XCIyMDI0LTExLTExVDEzOjA5OjU5LjEzMFpcIixcInBzXCI6XCIyOWM3OGFmNC03MGZhLTRiMWMtOWY0Zi1iMWMwMzFiY2E5ZDc6XjEuMC4wXCJ9fSIsImlhdCI6MTczMTMxNjE5OSwiZXhwIjoxNzMxMzMwNTk5fQ.9KQkH51HgmOOB-FIOSRYMQrpzDomdm-LTFhKOd8G1Zk`, // Replace with actual access token
                     },
                 }
             );
             console.log("productId :",response.data.product.id)
-            const productId1 = response.data.product.id; // Store the product ID
-            const productMediaUrl = `https://www.wixapis.com/stores/v1/products/${productId1}/media`; // Corrected URL
-            const response1 = await axios.post(
-                productMediaUrl,
-                productMedia,
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `OauthNG.JWS.eyJraWQiOiJZSEJzdUpwSCIsImFsZyI6IkhTMjU2In0.eyJkYXRhIjoie1wiaW5zdGFuY2VcIjp7XCJpbnN0YW5jZUlkXCI6XCIwNGNmMDExNy0wYzBiLTQxYjYtOTM1NS03M2U2ZTRjNjQwMDVcIixcImFwcERlZklkXCI6XCIyOWM3OGFmNC03MGZhLTRiMWMtOWY0Zi1iMWMwMzFiY2E5ZDdcIixcInNpZ25EYXRlXCI6XCIyMDI0LTExLTExVDA1OjAwOjMxLjY0NVpcIixcInBlcm1pc3Npb25zXCI6XCJcIixcImRlbW9Nb2RlXCI6ZmFsc2UsXCJzaXRlT3duZXJJZFwiOlwiYmM0YzZlZWEtYzNmNi00ZjljLTkxOGItOGNiYzEzODRlMzI0XCIsXCJtZXRhU2l0ZUlkXCI6XCJhOTJjNGFkZC00MTI3LTQ1YTUtOTNjMi04ODhmYTNlMjcxYmRcIixcImV4cGlyYXRpb25EYXRlXCI6XCIyMDI0LTExLTExVDA5OjAwOjMxLjY0NVpcIixcInBzXCI6XCIyOWM3OGFmNC03MGZhLTRiMWMtOWY0Zi1iMWMwMzFiY2E5ZDc6XjEuMC4wXCJ9fSIsImlhdCI6MTczMTMwMTIzMSwiZXhwIjoxNzMxMzE1NjMxfQ.A-5qzr9yBxNa9Sk5K3tJq6HBSreN8b3AECHwXgmk7nc`, // Replace with actual access token
-                    },
-                }
-            );
-            console.log(response1.data);
+            const productId = response.data.product.id;
+
+            // Step 2: Upload Image
+            const formData = new FormData();
+            formData.append("file", image); // Attach file
+            const productMediaUrl = `https://www.wixapis.com/stores/v1/products/${productId}/media`;
+
+            await axios.post(productMediaUrl, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    "Authorization": `OauthNG.JWS.eyJraWQiOiJZSEJzdUpwSCIsImFsZyI6IkhTMjU2In0.eyJkYXRhIjoie1wiaW5zdGFuY2VcIjp7XCJpbnN0YW5jZUlkXCI6XCIwNGNmMDExNy0wYzBiLTQxYjYtOTM1NS03M2U2ZTRjNjQwMDVcIixcImFwcERlZklkXCI6XCIyOWM3OGFmNC03MGZhLTRiMWMtOWY0Zi1iMWMwMzFiY2E5ZDdcIixcInNpZ25EYXRlXCI6XCIyMDI0LTExLTExVDA5OjA5OjU5LjEzMFpcIixcInBlcm1pc3Npb25zXCI6XCJcIixcImRlbW9Nb2RlXCI6ZmFsc2UsXCJzaXRlT3duZXJJZFwiOlwiYmM0YzZlZWEtYzNmNi00ZjljLTkxOGItOGNiYzEzODRlMzI0XCIsXCJtZXRhU2l0ZUlkXCI6XCJhOTJjNGFkZC00MTI3LTQ1YTUtOTNjMi04ODhmYTNlMjcxYmRcIixcImV4cGlyYXRpb25EYXRlXCI6XCIyMDI0LTExLTExVDEzOjA5OjU5LjEzMFpcIixcInBzXCI6XCIyOWM3OGFmNC03MGZhLTRiMWMtOWY0Zi1iMWMwMzFiY2E5ZDc6XjEuMC4wXCJ9fSIsImlhdCI6MTczMTMxNjE5OSwiZXhwIjoxNzMxMzMwNTk5fQ.9KQkH51HgmOOB-FIOSRYMQrpzDomdm-LTFhKOd8G1Zk`, // Replace with actual access token
+                    // Replace with your token
+                },
+            });
+            console.log(response.data);
             console.log("Product added:", response.data.product.id);
 
         } catch (error) {
@@ -85,7 +90,7 @@ export default function Form() {
     return (
         <div>
             <h1>Create Product</h1>
-            <fieldset>
+         
                 <form onSubmit={handleSubmit}>
                 <label htmlFor="image">Image*</label>
                     <input
@@ -134,7 +139,7 @@ export default function Form() {
                         Submit
                     </button>
                 </form>
-            </fieldset>
+           
         </div>
     );
 }
